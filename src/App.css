@@ -25,30 +25,37 @@ body {
 .dropdown {
     position: relative;
     color: #333;
-    cursor: default;
 }
 
-.dropdown .arrow {
+.arrow-wrapper {
+    margin: 10px;
+}
+
+.arrow {
     content: ' ';
-    display: block;
+    position: absolute;
+    display: inline-block;
+    width: 0;
     height: 0;
     margin-top: 0.3rem;
-    position: absolute;
     right: 10px;
     top: 14px;
-    width: 0;
     border-color: #999 transparent transparent;
     border-style: solid;
     border-width: 5px 5px 0;
     cursor: pointer;
 }
-
-.dropdown .arrow.open {
-    border-color: transparent transparent #999;
-    border-width: 0 5px 5px;
+.arrow.open {
+    border-color: #999 transparent transparent;
+    transform: rotate(180deg);
 }
 
-.dropdown .selected-value input {
+.selected-value {
+    display: flex;
+    align-items: center;
+}
+
+input{
     line-height: 1.5;
     font-size: 1rem;
     background-color: #272729;
@@ -56,14 +63,13 @@ body {
     border: 1px solid #ccc;
     border-radius: 2px;
     box-sizing: border-box;
-    cursor: pointer;
     outline: none;
     padding: 8px 52px 8px 10px;
     transition: all 200ms ease;
     width: 100%;
 }
 
-.dropdown .options {
+.options {
     display: none;
     background-color: #272729;
     border: 1px solid #ccc;
@@ -79,11 +85,11 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-.dropdown .options.open {
+.options.open {
     display: block;
 }
 
-.dropdown .option {
+.option {
     box-sizing: border-box;
     color: #333333cc;
     cursor: pointer;
@@ -91,8 +97,8 @@ body {
     padding: 8px 10px;
 }
 
-.dropdown .option.selected,
-.dropdown .option:hover {
+.option.selected,
+.option:hover {
     background-color: #686868;
     color: #333;
 }
