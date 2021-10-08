@@ -38,25 +38,23 @@ const Dropdown = ({options, id, label, rgb, prompt, value, onChange}) => {
 
     return (
         <div
-            className="dropdown">
+            className="dropdown"
+            ref={dropdownEl}
+            onClick={() => setOpen((prev) => !prev)}
+        >
             <div className="control">
                 <div className="selected-value">
                     <input
                         type="text"
                         placeholder={value ? value[label] : prompt}
-                        ref={dropdownEl}
                         value={displayValue()}
                         onChange={(e) => {
                             setQuery(e.target.value)
                             onChange(null)
                         }}
-                        onClick={() => setOpen(!open)}
                     />
                 </div>
-                <div
-                    className={`arrow ${open ? 'open' : null}`}
-                    onClick={() => setOpen(!open)}
-                />
+                <div className={`arrow ${open ? 'open' : null}`} />
             </div>
             <div className={`options ${open ? 'open' : null}`}>
                 {filter(options).map((option) => (
@@ -72,9 +70,7 @@ const Dropdown = ({options, id, label, rgb, prompt, value, onChange}) => {
                             setOpen(false)
                         }}
                     >
-                        <div className="select-wrapper">
-                            {option[label]}
-                        </div>
+                        <div className="select-wrapper">{option[label]}</div>
                     </div>
                 ))}
             </div>
