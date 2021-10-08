@@ -10,7 +10,7 @@ const Dropdown = ({options, id, label, rgb, prompt, value, onChange}) => {
         (e) => {
             if (
                 open &&
-                e.target.closest('.dropdown') !== dropdownEl.current
+                dropdownEl.current.contains(e.target) !== ('dropdown')
             ) {
                 setOpen(false)
             }
@@ -37,12 +37,8 @@ const Dropdown = ({options, id, label, rgb, prompt, value, onChange}) => {
     }
 
     return (
-        <div
-            className="dropdown"
-            ref={dropdownEl}
-            onClick={() => setOpen((prev) => !prev)}
-        >
-            <div className="control">
+        <div className="dropdown" ref={dropdownEl}>
+            <div className="control" onClick={() => setOpen((prev) => !prev)}>
                 <div className="selected-value">
                     <input
                         type="text"
