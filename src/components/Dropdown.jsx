@@ -1,6 +1,15 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react'
 
-const Dropdown = ({options, id, label, rgb, prompt, value, onChange}) => {
+const Dropdown = ({
+    options,
+    id,
+    label,
+    defaultName,
+    value,
+    onChange,
+    render,
+    data
+}) => {
     const [open, setOpen] = useState(false)
     const [query, setQuery] = useState('')
     const dropdownEl = useRef()
@@ -8,10 +17,7 @@ const Dropdown = ({options, id, label, rgb, prompt, value, onChange}) => {
     // Hiding dropdown
     const close = useCallback(
         (e) => {
-            if (
-                open &&
-                dropdownEl.current.contains(e.target) !== ('dropdown')
-            ) {
+            if (open && !dropdownEl.current.contains(e.target)) {
                 setOpen(false)
             }
         },
@@ -42,7 +48,7 @@ const Dropdown = ({options, id, label, rgb, prompt, value, onChange}) => {
                 <div className="selected-value">
                     <input
                         type="text"
-                        placeholder={value ? value[label] : prompt}
+                        placeholder={value ? value[label] : defaultName}
                         value={displayValue()}
                         onChange={(e) => {
                             setQuery(e.target.value)
@@ -59,14 +65,16 @@ const Dropdown = ({options, id, label, rgb, prompt, value, onChange}) => {
                         className={`option ${
                             value === option ? 'selected' : null
                         }`}
-                        style={{color: `rgb(${option[rgb]})`}}
                         onClick={() => {
                             setQuery('')
                             onChange(option)
                             setOpen(false)
                         }}
                     >
-                        <div className="select-wrapper">{option[label]}</div>
+                        <div className="select-wrapper">
+                            {option[label]}
+                            {render(data)}
+                        </div>
                     </div>
                 ))}
             </div>
