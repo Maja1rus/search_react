@@ -7,8 +7,7 @@ const Dropdown = ({
     defaultName,
     value,
     onChange,
-    render,
-    data
+    render
 }) => {
     const [open, setOpen] = useState(false)
     const [query, setQuery] = useState('')
@@ -73,7 +72,7 @@ const Dropdown = ({
                     >
                         <div className="select-wrapper">
                             {option[label]}
-                            {render(data)}
+                            {render ? render(option) : ''}
                         </div>
                     </div>
                 ))}
