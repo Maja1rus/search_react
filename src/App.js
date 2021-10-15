@@ -3,10 +3,8 @@ import './App.css'
 import Dropdown from './components/Dropdown'
 import data from './data/colors.json'
 
-function App({option, rgb}) {
+function App() {
     const [value, setValue] = useState(null)
-
-
 
     return (
         <div className="App">
@@ -19,11 +17,11 @@ function App({option, rgb}) {
                     rgb="rgb"
                     value={value}
                     onChange={(val) => setValue(val)}
-                    render={(data) => (
+                    render={(option) => (
                         <div
                             className="box-color"
-                            style={{background: `rgb(${data})` }}
-                        ></div>
+                            style={{background: `rgb(${option.rgb})`}}
+                        />
                     )}
                 />
             </div>
@@ -32,3 +30,7 @@ function App({option, rgb}) {
 }
 
 export default App
+
+
+
+
