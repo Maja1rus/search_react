@@ -18,10 +18,13 @@ function App() {
                     value={value}
                     onChange={(val) => setValue(val)}
                     render={(option) => (
-                        <div
-                            className="box-color"
-                            style={{background: `rgb(${option.rgb})`}}
-                        />
+                        <div className="select-wrapper">
+                           {option.label}
+                            <div
+                                className="box-color"
+                                style={{background: `rgb(${option.rgb})`}}
+                            />
+                        </div>
                     )}
                 />
             </div>
