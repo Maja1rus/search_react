@@ -70,10 +70,7 @@ const Dropdown = ({
                             setOpen(false)
                         }}
                     >
-                        <div className="select-wrapper">
-                            {option[label]}
-                            {render ? render(option) : ''}
-                        </div>
+                        {render ? render(option) : option[label]}
                     </div>
                 ))}
             </div>
